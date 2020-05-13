@@ -10,11 +10,11 @@ spring:
         binder:
           brokers: localhost:9092
       bindings:
-        input:
+        event-in:
           group: product
           destination: shop
           contentType: application/json
-        output:
+        event-out:
           destination: shop
           contentType: application/json
 ---
@@ -29,11 +29,11 @@ spring:
         binder:
           brokers: my-kafka.kafka.svc.cluster.local:9092
       bindings:
-        input:
+        event-in:
           group: reservationmanagement
           destination: eventTopic
           contentType: application/json
-        output:
+        event-out:
           destination: eventTopic
           contentType: application/json
 
