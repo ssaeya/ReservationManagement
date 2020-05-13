@@ -11,7 +11,7 @@ import java.util.Date;
  */
 
 @org.springframework.stereotype.Service
-@FeignClient(name="reservationNumber", url="${api.url.Payment}")
+@FeignClient(name="reservationNumber", url="${api.url.payment}")
 public interface PaymentManagementService {
 
     @RequestMapping(method= RequestMethod.POST, path="/payments", consumes = "application/json")

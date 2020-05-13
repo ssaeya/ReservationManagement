@@ -33,6 +33,15 @@ public class ReservationManagement {
     @PrePersist
     public void onPrePersist(){
         setReserveStatus("reserve");
+        Reserved reserved = new Reserved();
+        reserved.setReservationNumber(this.getReservationNumber());
+        reserved.setReserveStatus(this.getReserveStatus());
+        reserved.setCustomerName(this.getCustomerName());
+        reserved.setCustomerId(this.getCustomerId());
+        reserved.setRoomNumber(this.getRoomNumber());
+        reserved.setPaymentPrice(this.getPaymentPrice());
+
+        reserved.publishAfterCommit();
     }
 
 
@@ -85,7 +94,7 @@ public class ReservationManagement {
             //setReserveStatus("paymentComp");
             System.out.println("PaymentCompleted ReserReservationNumber= " + getReservationNumber());
         }
-        else if("paymentComp".equals(this.getReserveStatus())){
+        else if("checkOut".equals(this.getReserveStatus())){
             CheckedOut checkedOut = new CheckedOut();
             checkedOut.setReservationNumber(this.getReservationNumber());
             checkedOut.setReserveStatus(this.getReserveStatus());
@@ -111,7 +120,7 @@ public class ReservationManagement {
                     .build());
             System.out.println(checkedOut.toJson());
             checkedOut.publishAfterCommit();
-            setReserveStatus("checkOut");
+            setReserveStatus("End");
         }
     }
 
