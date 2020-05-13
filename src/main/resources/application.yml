@@ -39,4 +39,4 @@ spring:
 
 api:
   url:
-    product: http://Payment:8080          
+    product: http://paymentmanagement:8080          
